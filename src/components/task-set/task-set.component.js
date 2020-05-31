@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Form from '../form/form.component'
+import './task-set.styles.scss'
 
-export default () => {
+export default ({title}) => {
     const [todos, setTodos] = useState([]);
     const [addNew, setAddNew] = useState(false);
-
-    let newDate = new Date()
 
 
     const toggleComplete = i =>
@@ -22,20 +21,20 @@ export default () => {
       );
     
     useEffect(() => {
-        const data = localStorage.getItem('to-do-list')
+        const data = localStorage.getItem(`${title}`)
         if (data) {
             setTodos(JSON.parse(data))
         }
     }, [])
 
     useEffect(() => {
-      localStorage.setItem('to-do-list', JSON.stringify(todos))
+      localStorage.setItem(`${title}`, JSON.stringify(todos))
     })
     
 
     return (
-      <div>
-        <h1>{`${newDate.toLocaleString('default', { month: 'long' })} ${newDate.getDate()}, ${newDate.getFullYear()}`}</h1>
+      <div className='taskset'>
+        <h1>{title}</h1>
         <button onClick={() => setAddNew(!addNew)}>Add Task</button>
         <div>
           {todos.map(({ text, complete }, i) => (
