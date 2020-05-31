@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from '../form/form.component'
 
 export default () => {
@@ -21,6 +21,16 @@ export default () => {
         )
       );
     
+    useEffect(() => {
+        const data = localStorage.getItem('to-do-list')
+        if (data) {
+            setTodos(JSON.parse(data))
+        }
+    }, [])
+
+    useEffect(() => {
+      localStorage.setItem('to-do-list', JSON.stringify(todos))
+    })
     
 
     return (
