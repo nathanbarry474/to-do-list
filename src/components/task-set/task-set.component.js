@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
+
 import Form from '../form/form.component'
+
 import './task-set.styles.scss'
+import { FaPlus } from 'react-icons/fa'
+import { RiCloseLine } from 'react-icons/ri'
+import { FiCircle } from 'react-icons/fi'
+import { BsCircleFill } from 'react-icons/bs'
+
 
 export default ({title}) => {
     const [todos, setTodos] = useState([]);
@@ -34,37 +41,48 @@ export default ({title}) => {
 
     return (
       <div className='taskset'>
-        <h1>{title}</h1>
-        <button onClick={() => setAddNew(!addNew)}>Add Task</button>
+        <h1 className='title'>{title}</h1>
         <div>
           {todos.map(({ text, complete }, i) => (
-            <div>
+            <div className='class-block'>
+                {
+                    complete ?
+                    <BsCircleFill className='bullet' />
+                    : <FiCircle className='bullet' />
+                    
+
+                }
                 <div
+                className='task'
                 key={text}
                 onClick={() => toggleComplete(i)}
                 style={{
                     textDecoration: complete ? "line-through" : ""
                 }}
                 >
-                {text}
+                    {text}
                 </div>
-                <button onClick={() =>
+                <button className='close-btn' onClick={() =>
                     setTodos(todos.filter( item => item.text !== text))}
                 >
-                    x
+                    <RiCloseLine/>
                 </button>
             </div>
           ))}
         </div>
-        { addNew ? 
-            <Form
-            onSubmit={text => {
-                setTodos([...todos, { text: text, complete: false }])
-                setAddNew(!addNew)
-            }}
-            />
-            : null
-        }
+        <div className='add-new'>
+            <button className='add-btn' onClick={() => setAddNew(!addNew)}><FaPlus/></button>
+            { addNew ? 
+                <Form
+                className='form'
+                onSubmit={text => {
+                    setTodos([...todos, { text: text, complete: false }])
+                    setAddNew(!addNew)
+                }}
+                />
+                : null
+            }
+        </div>
       </div>
     );
   };
