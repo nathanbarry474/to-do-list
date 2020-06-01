@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './form.styles.scss'
 
 const useInputValue = initialValue => {
   const [value, setValue] = useState(initialValue);
@@ -10,12 +11,13 @@ const useInputValue = initialValue => {
   };
 };
 
-export default ({ onSubmit }) => {
+export default ({ onSubmit, ref }) => {
   const { resetValue, ...text } = useInputValue("");
 
   return (
     <div>
         <form
+        ref={ref}
         onSubmit={e => {
             e.preventDefault();
             onSubmit(text.value);

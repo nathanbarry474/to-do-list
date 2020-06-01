@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import Form from '../form/form.component'
 
@@ -12,7 +12,7 @@ import { BsCircleFill } from 'react-icons/bs'
 export default ({title}) => {
     const [todos, setTodos] = useState([]);
     const [addNew, setAddNew] = useState(false);
-
+    const inputRef = useRef()
 
     const toggleComplete = i =>
       setTodos(
@@ -71,7 +71,13 @@ export default ({title}) => {
           ))}
         </div>
         <div className='add-new'>
-            <button className='add-btn' onClick={() => setAddNew(!addNew)}><FaPlus/></button>
+            <button className='add-btn' onClick={() => {
+                setAddNew(!addNew)
+                //inputRef.current.focus()
+            }
+            }>
+                <FaPlus/>
+            </button>
             { addNew ? 
                 <Form
                 className='form'
