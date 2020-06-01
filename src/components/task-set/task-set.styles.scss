@@ -1,16 +1,14 @@
 .taskset {
     display: block;
-    border: medium #000000;
-    margin: 50px 0 0 200px;
 }
 
 .title {
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
 .task {
     display: inline-block;
-    padding: 0 10px 15px 0;
+    padding: 0 5px 15px 0;
 }
 
 .close-btn {
@@ -32,13 +30,18 @@
     float: right;
 }
 
-.add-new {
-    margin: 0px 0 0 0;
-}
+
 
 button {
     padding: none;
     border: none;
     background: transparent;
     border-radius: 50px;
+}
+
+@media only screen and (min-width: 800px) {
+    .taskset {
+        display: block;
+        margin: 0 100px 0 200px;
+    }
 }
