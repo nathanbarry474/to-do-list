@@ -9,15 +9,18 @@
 .task {
     display: inline-block;
     padding: 0 5px 15px 0;
+    cursor: pointer;
 }
 
 .close-btn {
     display: inline;
+    cursor: pointer;
 }
 
 .add-btn {
     margin: 3px 0 0 -5px;
     float: left;
+    cursor: pointer;
 }
 
 .bullet {
@@ -40,6 +43,7 @@ button {
     border: none;
     background: transparent;
     border-radius: 50px;
+    cursor: pointer;
 }
 
 @media only screen and (min-width: 800px) {
